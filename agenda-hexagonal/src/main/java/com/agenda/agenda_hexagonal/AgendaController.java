@@ -1,9 +1,20 @@
 package com.agenda.agenda_hexagonal;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+
+
 
 public class AgendaController {
+
+    
+    private AgendaService agendaService;
+
+    public AgendaController(AgendaService agendaService){
+        this.agendaService=agendaService;
+    }
+
 
 }

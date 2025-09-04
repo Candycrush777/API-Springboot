@@ -4,6 +4,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 
-public class EjemploComponent {
+public class AgendaComponent {
 
 }

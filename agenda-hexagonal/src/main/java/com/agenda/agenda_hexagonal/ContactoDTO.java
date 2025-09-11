@@ -8,3 +8,4 @@ public record ContactoDTO( Integer id,
 
 
 } 
+//este archivo es para probar con postman o bien en el navegador, ademas con record genera solo los getter y setter 

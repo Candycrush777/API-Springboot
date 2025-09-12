@@ -1,53 +1,105 @@
 package com.agenda.agenda_hexagonal;
 
-import java.util.ArrayList;
+import org.springframework.http.ResponseEntity;
+/* import org.springframework.beans.factory.annotation.Autowired; */
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import jakarta.validation.Valid;
+
+import java.net.URI;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/contactos")
-
 public class ContactoController {
+    
+    /* @Autowired  @Autowired inyecta el bean contactosRepository (dependencia).
 
-private List<ContactoDTO> contactos= new ArrayList<>( List.of(
+Recomendación: usar inyección por constructor en lugar de @Autowired sobre el campo. Es más fácil de testear y evita problemas.*/
+    private ContactosRepository contactosRepository;
 
-
- new ContactoDTO(1, "Jose", "Pérez", "600123456", "jose@example.com"),
-    new ContactoDTO(2, "David", "López", "600654321", "david@example.com"),
-    new ContactoDTO(3, "Maria", "García", "611223344", "maria@example.com"),
-    new ContactoDTO(4, "Fernando", "Sánchez", "622334455", "fernando@exampl")) 
-
-);
-    @GetMapping("/{id}") 
-    public ResponseEntity<ContactoDTO> getContactoById(@PathVariable("id") int id) {
-        for (ContactoDTO contacto : contactos) {
-            if (contacto.id() == id) {
-                return ResponseEntity.ok(contacto); // 200 OK
-            }
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // 404 Not Found si no existe
+    public ContactoController(ContactosRepository contactosRepository) {
+        this.contactosRepository = contactosRepository;
     }
 
+
+
+
+/* 
+    @GetMapping("/{id}")
+    public Optional<Contactos> obtenerContactoPorId(@PathVariable Integer id) {
+        return contactosRepository.findById(id);
+    } */
+
+    @GetMapping("/{id}")
+public ResponseEntity<Contactos> getById(@PathVariable Integer id) {
+    return contactosRepository.findById(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+}
+
+
     @GetMapping
-public ResponseEntity<List<ContactoDTO>> getAllContactos() {
-    return ResponseEntity.ok(contactos);
+   /*  public Iterable<Contactos> obtenerTodosLosContactos() {
+        return contactosRepository.findAll();
+    }  vamos hacerlo mas moderno en un entorno real 
+      Devuelve ResponseEntity<List<Contactos>>
+
+ResponseEntity te da control total sobre la respuesta HTTP:
+
+Status code (200 OK, 201 Created, 404, etc.)
+
+Headers personalizados
+
+Body (tu lista de contactos)
+
+Usa List<Contactos> en lugar de Iterable<Contactos>
+
+Es más práctico en Java moderno porque puedes usar métodos de List como size(), sort(), stream(), etc.
+
+JpaRepository devuelve List<T> en findAll(), así que funciona perfecto. */
+
+    public ResponseEntity<List<Contactos>>getAll(){
+
+        List<Contactos> lista = contactosRepository.findAll();
+        return ResponseEntity.ok(lista);
+
+    }
+
+ /*    @PostMapping
+    public Contactos crearContacto(@RequestBody Contactos contacto) {
+        return contactosRepository.save(contacto);
+    } */
+
+    @PostMapping
+public ResponseEntity<Contactos> create(@Valid @RequestBody Contactos contacto) {
+    Contactos saved = contactosRepository.save(contacto);
+
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(saved.getId())
+            .toUri();
+
+    return ResponseEntity.created(location).body(saved);
 }
 
+// DELETE /contactos/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        if (!contactosRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        contactosRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+ 
 
-    @PostMapping 
 
-public ResponseEntity<Void> postContacto(@RequestBody ContactoDTO contactoDTO){
-
-contactos.add(contactoDTO);
-return ResponseEntity.status(HttpStatus.CREATED).build();
-}
-
+/* 
+    @DeleteMapping("/{id}")
+    public void eliminarContactoPorId(@PathVariable Integer id) {
+        contactosRepository.deleteById(id);
+    } */
 }

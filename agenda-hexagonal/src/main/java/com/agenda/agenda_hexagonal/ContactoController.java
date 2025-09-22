@@ -68,5 +68,16 @@ public ResponseEntity<Contactos> getByEmail(@RequestParam String email) {
     }
 }
 
+@PutMapping("/{id}")
+public ResponseEntity<Contactos> actualizar(@PathVariable Integer id, @RequestBody Contactos contacto) {
+    Contactos updated = contactosService.updateContacto(id, contacto);
+    if (updated != null) {
+        return ResponseEntity.ok(updated);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+
+
 }
 

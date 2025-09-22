@@ -32,4 +32,13 @@ public class ContactosService {
     public Contactos buscarPorEmail(String email) {
         return contactosRepository.findByEmail(email);
     }
+    public Contactos updateContacto(Integer id, Contactos contactoActualizado) {
+    return contactosRepository.findById(id).map(c -> {
+        c.setNombre(contactoActualizado.getNombre());
+        c.setApellido(contactoActualizado.getApellido());
+        c.setEmail(contactoActualizado.getEmail());
+        c.setTelefono(contactoActualizado.getTelefono());
+        return contactosRepository.save(c);
+    }).orElse(null); // devuelve null si no se encuentra el contacto
+}
 }

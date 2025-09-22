@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    <div class="col" *ngFor="let contacto of contactos">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ contacto.nombre }} {{ contacto.apellido }}</h5>
+          <p class="card-text mb-1"><strong>Email:</strong> {{ contacto.email }}</p>
+          <p class="card-text"><strong>Teléfono:</strong> {{ contacto.telefono }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

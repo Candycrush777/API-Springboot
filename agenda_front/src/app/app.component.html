@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid home">
+<nav class="navbar navbar-expand-lg home">
+  <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Agenda</a>
     <button
       class="navbar-toggler"
@@ -14,7 +14,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Menú -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
@@ -27,19 +26,14 @@
         </li>
       </ul>
 
-      <!-- Buscador (más adelante lo conectamos) -->
       <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Buscar contacto"
-          aria-label="Search"
-        />
+        <input class="form-control me-2" type="search" placeholder="Buscar contacto" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>
 </nav>
+
 
 <!-- ✅ Aquí se cargan los componentes según la ruta -->
 <div class="container mt-3">

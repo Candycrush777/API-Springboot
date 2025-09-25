@@ -2,21 +2,45 @@
   <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
     <h2 class="text-center mb-4">Nuevo contacto</h2>
 
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Añadir nombre" />
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Añadir nombre" 
+          [(ngModel)]="contacto.nombre" 
+          name="nombre" 
+          required />
       </div>
 
       <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Añadir apellido" />
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Añadir apellido" 
+          [(ngModel)]="contacto.apellido" 
+          name="apellido" 
+          required />
       </div>
 
       <div class="mb-3">
-        <input type="email" class="form-control" placeholder="Añadir email" />
+        <input 
+          type="email" 
+          class="form-control" 
+          placeholder="Añadir email" 
+          [(ngModel)]="contacto.email" 
+          name="email" 
+          required />
       </div>
 
       <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Añadir teléfono" />
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Añadir teléfono" 
+          [(ngModel)]="contacto.telefono" 
+          name="telefono" 
+          required />
       </div>
 
       <div class="text-center">
@@ -25,4 +49,5 @@
     </form>
   </div>
 </div>
+
 

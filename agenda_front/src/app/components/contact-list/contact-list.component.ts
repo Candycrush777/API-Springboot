@@ -10,7 +10,21 @@ import { ContactoServiceService } from '../../services/contacto-service.service'
   providers: [ContactoServiceService],
 })
 export class ContactListComponent {
+editContacto(_t5: any) {
+throw new Error('Method not implemented.');
+}
   contactos: any[] = [];
+   private heroImages: string[] = [
+    '/batman.webp',
+    '/superman.jpg',
+    '/flash.jpg',
+    '/lobezno.webp',
+    '/ironman.webp',
+    '/capitanamerica.webp',
+    '/hulk.webp',
+    '/spiderman.jpg',
+    
+  ];
 
   constructor(private contactoService: ContactoServiceService) {}
 
@@ -18,14 +32,16 @@ export class ContactListComponent {
     this.loadContactos();
   }
 
-  loadContactos(): void {
+loadContactos(): void {
     this.contactoService.getContactos().subscribe({
       next: (data) => {
-        this.contactos = data;
+        // Asignamos imagen a cada contacto según el índice
+        this.contactos = data.map((c, index) => ({
+          ...c,
+          imagen: this.heroImages[index % this.heroImages.length] // Repite si hay más de 9
+        }));
       },
-      error: (error) => {
-        console.error('Error fetching contactos:', error);
-      },
+      error: (err) => console.error(err)
     });
   }
 

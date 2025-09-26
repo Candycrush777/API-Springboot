@@ -1,7 +1,22 @@
 <div class="container mt-4">
+  <!-- Formulario en absolute centrado -->
+  @if (mostrarFormulario()) {
+    <div class="formulario-overlay">
+      <div class="formulario-container">
+        <app-contact-form 
+          [contactoInput]="contactoSeleccionado()"
+          (contactoGuardado)="onContactoGuardado()"
+          (cancelar)="cancelarEdicion()">
+        </app-contact-form>
+      </div>
+    </div>
+  }
+
+  <!-- Lista de contactos (se queda en el fondo) -->
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-    <div class="col" *ngFor="let contacto of contactos">
-      <div class="card h-100 shadow-hover">
+    <div class="col" *ngFor="let contacto of contactos; let i = index">
+      <div class="card h-100 shadow-hover animate__animated animate__fadeInDown" 
+           [style.animationDelay]="i * 0.2 + 's'">
         <img [src]="contacto.imagen" class="card-img-top hero-img" alt="{{ contacto.nombre }}">
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ contacto.nombre }} {{ contacto.apellido }}</h5>
@@ -11,7 +26,7 @@
           </p>
           <p class="card-text"><strong>Teléfono:</strong> {{ contacto.telefono }}</p>
           
-          <div class="mt-auto d-flex justify-content-between gap-2  p-3">
+          <div class="mt-auto d-flex justify-content-between gap-2 p-3">
             <button class="my-btn btn-delete" (click)="deleteContacto(contacto.id)">
               Borrar
             </button>
@@ -24,7 +39,3 @@
     </div>
   </div>
 </div>
-
-
-
-

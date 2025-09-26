@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg home">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Agenda</a>
+<nav class="navbar navbar-expand-lg home fixed-top">
+  <div class="container-fluid ">
+    <a class="navbar-brand" routerLink="/">Superheroes Directory</a>
+    <img src="/superhero.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top me-2"/>
     <button
       class="navbar-toggler"
       type="button"
@@ -19,24 +20,34 @@
           <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contacts" routerLinkActive="active">Contactos</a>
+          <a class="nav-link" routerLink="/contacts" routerLinkActive="active"
+            >Contactos</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/add-contact" routerLinkActive="active">Añadir</a>
+          <a
+            class="nav-link"
+            routerLink="/add-contact"
+            routerLinkActive="active"
+            >Añadir</a
+          >
         </li>
       </ul>
 
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar contacto" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Buscar contacto"
+          aria-label="Search"
+        /> <div class="flex"><button class="my-btn btn-search" type="submit">Search</button></div>
+        
       </form>
     </div>
   </div>
 </nav>
 
-
 <!-- ✅ Aquí se cargan los componentes según la ruta -->
-<div class="container mt-3">
+<div class="container mt-3" style="padding-top: 80px;">
   <router-outlet></router-outlet>
 </div>
-

@@ -52,46 +52,34 @@
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
-
-
-.my-btn {
-  width: 90px;           
-  height: 30px;           
-  border-radius: 15px;    
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  box-sizing: border-box; 
-  padding: 0;             
+.formulario-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
   display: flex;
   align-items: center;
-  justify-content: center; 
-  border: none;
-  cursor: pointer;
-  color: white;
+  justify-content: center;
+  z-index: 1000; /* Por encima de todo */
 }
 
-/* Actualizar botón */
-.btn-update {
-  background-color: #362f7e;
- 
+.formulario-container {
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-.btn-update:hover {
-  background-color: #041263;
-
+/* Opcional: desenfoque del fondo */
+.formulario-overlay ~ .container {
+  filter: blur(2px);
+  transition: filter 0.9s ease;
 }
 
-/* Borrar botón */
-.btn-delete {
-  background-color: #e91009;
- 
-}
 
-.btn-delete:hover {
-  background-color: #9e0803;
-  
-}
+
 
 
 

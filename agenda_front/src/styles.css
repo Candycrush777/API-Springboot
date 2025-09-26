@@ -1,5 +1,65 @@
 body {
   background-color: #f2f2f7; /* gris muy claro */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #333;
 }
+
+.navbar-brand {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem ;
+}
+
+.nav-link{
+
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.2rem ;
+}
+.card-title {
+  font-family: 'Luckiest Guy', cursive;
+}
+.my-btn {
+  width: 90px;           
+  height: 30px;           
+  border-radius: 15px;    
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-sizing: border-box; 
+  padding: 0;             
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* Actualizar botón */
+.btn-update {
+  background-color: #362f7e;
+ 
+}
+
+.btn-update:hover {
+  background-color: #041263;
+
+}
+
+/* Borrar botón */
+.btn-delete {
+  background-color: #e91009;
+ 
+}
+
+.btn-delete:hover {
+  background-color: #9e0803;
+  
+}
+
+.btn-search {
+ background-color: #362f7e;
+}
+.btn-search:hover {
+  background-color: #041263;
+}
+

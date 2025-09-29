@@ -55,6 +55,7 @@ export class ContactFormComponent {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#362f7e'
           });
+          this.formState.set(this.getEmptyContacto());
           this.contactoGuardado.emit();
         },
         error: (err) => {
@@ -77,6 +78,7 @@ export class ContactFormComponent {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#362f7e'
           });
+           this.formState.set(this.getEmptyContacto());
           this.contactoGuardado.emit();
         },
         error: (err) => {
